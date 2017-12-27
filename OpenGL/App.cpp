@@ -1,17 +1,20 @@
-#include "pch.h"
-#include "Window.h"
+#include "App.h"
 
-int main()
+
+
+App::App()
+	:window(1920, 1080)
 {
-	Window window(1920, 1080);
-
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		error("Failed to initialize GLAD");
 	}
 
 	window.setGLViewport();
+}
 
+int App::run()
+{
 	//Main loop
 	while (window.isOpen())
 	{
@@ -22,6 +25,15 @@ int main()
 		window.processEvents();
 	}
 
-
 	return 0;
+}
+
+
+App::~App()
+{
+}
+
+int main()
+{
+	return App().run();
 }
