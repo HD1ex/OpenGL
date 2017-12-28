@@ -3,26 +3,29 @@
 
 
 App::App()
-	:window(1920, 1080)
+	:m_window(1920, 1080)
 {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		error("Failed to initialize GLAD");
 	}
 
-	window.setGLViewport();
+	m_window.setGLViewport();
+
+	m_pScene = new MainScene();
 }
 
 int App::run()
 {
 	//Main loop
-	while (window.isOpen())
+	while (m_window.isOpen())
 	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		m_pScene->clear();
+		m_pScene->update();
+		m_pScene->render();
 
-		window.swapBuffers();
-		window.processEvents();
+		m_window.swapBuffers();
+		m_window.processEvents();
 	}
 
 	return 0;

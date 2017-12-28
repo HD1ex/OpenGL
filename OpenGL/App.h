@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Window.h"
+#include "MainScene.h"
 
 class App
 {
@@ -10,6 +11,7 @@ public:
 	~App();
 
 private:
-	Window window;
+	Window m_window;
+	IScene* m_pScene;
 };
 

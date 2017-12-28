@@ -16,6 +16,9 @@
     <Filter Include="Quelldateien\glad">
       <UniqueIdentifier>{0567a4b3-501d-43f0-81fa-888324fa4ad4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{168dfac6-9164-40f1-a276-03d126e1315a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -25,6 +28,18 @@
       <Filter>Quelldateien\glad</Filter>
     </ClCompile>
     <ClCompile Include="App.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="IScene.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderProgram.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticShader.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,5 +53,25 @@
     <ClInclude Include="App.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="IScene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderProgram.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticShader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="simpleVertexShader.glsl">
+      <Filter>Shaders</Filter>
+    </Text>
+    <Text Include="simpleFragmentShader.glsl">
+      <Filter>Shaders</Filter>
+    </Text>
   </ItemGroup>
 </Project>
