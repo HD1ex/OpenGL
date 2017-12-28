@@ -141,7 +141,10 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="IScene.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="RawModel.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <Text Include="simpleVertexShader.glsl">
       <FileType>Document</FileType>
@@ -151,9 +154,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="RawModel.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="Window.h" />

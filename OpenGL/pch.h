@@ -4,10 +4,12 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <memory>
 
 using namespace std;
 
-inline void error(const char* what, int line, const char* file)
+inline void error(const char* what, const int line, const char* file)
 {
 	if (what[0])
 	{

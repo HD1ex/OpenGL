@@ -5,14 +5,14 @@
 App::App()
 	:m_window(1920, 1080)
 {
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 	{
 		error("Failed to initialize GLAD");
 	}
 
 	m_window.setGLViewport();
 
-	m_pScene = new MainScene();
+	m_pScene = make_unique<MainScene>();
 }
 
 int App::run()

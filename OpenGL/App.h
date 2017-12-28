@@ -12,6 +12,6 @@ public:
 
 private:
 	Window m_window;
-	IScene* m_pScene;
+	unique_ptr<IScene> m_pScene;
 };
 

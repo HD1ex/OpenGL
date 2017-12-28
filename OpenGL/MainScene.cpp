@@ -1,29 +1,31 @@
 #include "MainScene.h"
 
-
-
 MainScene::MainScene()
 {
-	shader.init();
+	m_pShader = make_unique<StaticShader>();
+	m_pShader->init();
 
-	float vertices[] = { -0.5f, 0.5f, 0.f, -0.5f, -0.5f, 0.f, 0.5f, -0.5f, 0.f, 0.5f, -0.5f, 0.f, 0.5f, 0.5f, 0.f, -0.5f, 0.5f, 0.f
+	m_pLoader = make_unique<Loader>();
+	m_pRenderer = make_unique<Renderer>();
+
+	const vector<float> vertices = {
+		-0.5f, 0.5f, 0.f,
+		-0.5f, -0.5f, 0.f,
+		0.5f, -0.5f, 0.f,
+		0.5f, 0.5f, 0.f,
 	};
 
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * sizeof(float), nullptr);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	const vector<GLuint> indices = {
+		0,1,3,
+		3,1,2
+	};
+
+	m_pModel = m_pLoader->loadToVao(vertices, indices);
 }
 
 
 MainScene::~MainScene()
 {
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &vbo);
 }
 
 void MainScene::update()
@@ -32,13 +34,9 @@ void MainScene::update()
 
 void MainScene::render()
 {
-	shader.start();
+	m_pShader->start();
 
-	glBindVertexArray(vao);
-	glEnableVertexAttribArray(0);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glDisableVertexAttribArray(0);
-	glBindVertexArray(0);
+	m_pRenderer->render(m_pModel.get());
 
-	shader.stop();
+	m_pShader->stop();
 }
