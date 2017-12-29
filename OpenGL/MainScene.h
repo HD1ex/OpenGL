@@ -3,6 +3,8 @@
 #include "StaticShader.h"
 #include "Loader.h"
 #include "Renderer.h"
+#include "ModelTexture.h"
+#include "TexturedModel.h"
 
 class MainScene :
 	public IScene
@@ -18,6 +20,8 @@ private:
 	unique_ptr<StaticShader> m_pShader;
 	unique_ptr<Loader> m_pLoader;
 	unique_ptr<Renderer> m_pRenderer;
-	unique_ptr<RawModel> m_pModel;
+	shared_ptr<RawModel> m_pModel;
+	shared_ptr<ModelTexture> m_pTexture;
+	unique_ptr<TexturedModel> m_pTexturedModel;
 };
 

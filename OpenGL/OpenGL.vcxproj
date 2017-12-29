@@ -142,7 +142,9 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="IScene.cpp" />
     <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="ModelTexture.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -150,24 +152,31 @@
       <FileType>Document</FileType>
     </Text>
     <ClCompile Include="StaticShader.cpp" />
+    <ClCompile Include="TexturedModel.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="lodepng.h" />
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="StaticShader.h" />
+    <ClInclude Include="TexturedModel.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="simpleFragmentShader.glsl">
       <FileType>Document</FileType>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="test_texture.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

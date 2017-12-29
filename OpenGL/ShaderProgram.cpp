@@ -1,10 +1,11 @@
 #include "ShaderProgram.h"
 
 
-ShaderProgram::ShaderProgram(wstring vertexFile, wstring fragmentFile)
+ShaderProgram::ShaderProgram(const wstring& vertexFile,const wstring& fragmentFile)
+	:programID(0)
 {
 	vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
-	vertexShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
+	fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
 }
 
 ShaderProgram::~ShaderProgram()
@@ -27,7 +28,7 @@ void ShaderProgram::init()
 	bindAttributes();
 }
 
-void ShaderProgram::start()
+void ShaderProgram::start() const
 {
 	glUseProgram(programID);
 }
@@ -37,21 +38,21 @@ void ShaderProgram::stop()
 	glUseProgram(0);
 }
 
-void ShaderProgram::bindAttribute(int attribute, string attributeName)
+void ShaderProgram::bindAttribute(int attribute, const string& attributeName) const
 {
 	glBindAttribLocation(programID, attribute, attributeName.c_str());
 }
 
-int ShaderProgram::loadShader(wstring filename, int type)
+int ShaderProgram::loadShader(const wstring& filename,const int type)
 {
 	std::ifstream file(filename);
 	std::stringstream buffer;
 	buffer << file.rdbuf();
-	string str = buffer.str();
-	const char* fileData = str.c_str();
+	auto str = buffer.str();
+	auto fileData = str.c_str();
 	const int fileSize = str.length();
 
-	int id = glCreateShader(type);
+	const int id = glCreateShader(type);
 	glShaderSource(id, 1, &fileData, &fileSize);
 	glCompileShader(id);
 	int  success;

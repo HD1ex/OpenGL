@@ -20,7 +20,17 @@ MainScene::MainScene()
 		3,1,2
 	};
 
-	m_pModel = m_pLoader->loadToVao(vertices, indices);
+	const vector<float> texCoords = {
+		0,0,
+		0,1,
+		1,1,
+		1,0,
+	};
+
+	m_pModel = m_pLoader->loadToVao(vertices, texCoords, indices);
+
+	m_pTexture = make_shared<ModelTexture>(m_pLoader->loadTexture("test_texture.png"));
+	m_pTexturedModel = make_unique<TexturedModel>(m_pModel.get(), m_pTexture.get());
 }
 
 
@@ -36,7 +46,7 @@ void MainScene::render()
 {
 	m_pShader->start();
 
-	m_pRenderer->render(m_pModel.get());
+	m_pRenderer->render(m_pTexturedModel.get());
 
 	m_pShader->stop();
 }

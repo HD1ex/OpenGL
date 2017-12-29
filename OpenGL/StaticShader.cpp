@@ -11,9 +11,11 @@ StaticShader::StaticShader()
 
 StaticShader::~StaticShader()
 {
+	ShaderProgram::~ShaderProgram();
 }
 
 void StaticShader::bindAttributes()
 {
 	bindAttribute(0, "position");
+	bindAttribute(1, "texCoords");
 }

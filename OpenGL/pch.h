@@ -25,3 +25,9 @@ inline void error(const char* what, const int line, const char* file)
 }
 
 #define error(text) error(text, __LINE__, __FILE__)
+
+inline bool fileExists(const std::string& name)
+{
+	struct stat buffer;
+	return (stat(name.c_str(), &buffer) == 0);
+}

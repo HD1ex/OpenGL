@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "RawModel.h"
+#include "TexturedModel.h"
 
 /**
  * \brief This class manages openGL rendering
@@ -10,6 +10,6 @@ class Renderer
 public:
 	Renderer();
 	~Renderer();
-	void render(const RawModel* rawModel);
+	void render(const TexturedModel * pTexturedModel);
 };
 
