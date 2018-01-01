@@ -3,7 +3,7 @@
 
 
 App::App()
-	:m_window(1920, 1080)
+	:m_window(1280, 720)
 {
 	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 	{
