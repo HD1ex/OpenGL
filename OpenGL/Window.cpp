@@ -57,6 +57,11 @@ void Window::processEvents()
 	glfwPollEvents();
 }
 
+float Window::getAspectRatio()
+{
+	return static_cast<float>(m_width) / m_height;
+}
+
 void Window::onResize(int width, int height)
 {
 	m_width = width;

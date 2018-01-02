@@ -13,6 +13,7 @@ public:
 	bool isOpen();
 	void swapBuffers();
 	void processEvents();
+	float getAspectRatio();
 
 	//Wrapper functions
 private:

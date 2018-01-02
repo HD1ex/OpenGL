@@ -2,35 +2,36 @@
 
 
 ShaderProgram::ShaderProgram(const wstring& vertexFile,const wstring& fragmentFile)
-	:programID(0)
+	:m_programID(0)
 {
-	vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
-	fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
+	m_vertexShaderID = loadShader(vertexFile, GL_VERTEX_SHADER);
+	m_fragmentShaderID = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
 }
 
 ShaderProgram::~ShaderProgram()
 {
 	stop();
-	glDetachShader(programID, vertexShaderID);
-	glDetachShader(programID, fragmentShaderID);
-	glDeleteShader(vertexShaderID);
-	glDeleteShader(fragmentShaderID);
-	glDeleteProgram(programID);
+	glDetachShader(m_programID, m_vertexShaderID);
+	glDetachShader(m_programID, m_fragmentShaderID);
+	glDeleteShader(m_vertexShaderID);
+	glDeleteShader(m_fragmentShaderID);
+	glDeleteProgram(m_programID);
 }
 
 void ShaderProgram::init()
 {
-	programID = glCreateProgram();
-	glAttachShader(programID, vertexShaderID);
-	glAttachShader(programID, fragmentShaderID);
-	glLinkProgram(programID);
-	glValidateProgram(programID);
+	m_programID = glCreateProgram();
+	glAttachShader(m_programID, m_vertexShaderID);
+	glAttachShader(m_programID, m_fragmentShaderID);
 	bindAttributes();
+	glLinkProgram(m_programID);
+	glValidateProgram(m_programID);
+	getAllUniformLocations();
 }
 
 void ShaderProgram::start() const
 {
-	glUseProgram(programID);
+	glUseProgram(m_programID);
 }
 
 void ShaderProgram::stop()
@@ -40,7 +41,32 @@ void ShaderProgram::stop()
 
 void ShaderProgram::bindAttribute(int attribute, const string& attributeName) const
 {
-	glBindAttribLocation(programID, attribute, attributeName.c_str());
+	glBindAttribLocation(m_programID, attribute, attributeName.c_str());
+}
+
+GLuint ShaderProgram::getUniformLocation(string uniformName)
+{
+	return glGetUniformLocation(m_programID, uniformName.c_str());
+}
+
+void ShaderProgram::loadFloat(const GLuint location, float value)
+{
+	glUniform1f(location, value);
+}
+
+void ShaderProgram::loadVector(const GLuint location, vec3 & value)
+{
+	glUniform1fv(location, value.length(), reinterpret_cast<float*>(&value));
+}
+
+void ShaderProgram::loadBoolean(const GLuint location, bool value)
+{
+	glUniform1f(location, value);
+}
+
+void ShaderProgram::loadMatrix(const GLuint location, mat4x4 & value)
+{
+	glUniformMatrix4fv(location, 1, false, value_ptr(value));
 }
 
 int ShaderProgram::loadShader(const wstring& filename,const int type)

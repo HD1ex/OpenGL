@@ -5,7 +5,7 @@ class IScene
 {
 public:
 	virtual ~IScene() = default;
-	virtual void clear();
+	virtual void prepare();
 	virtual void update() = 0;
 	virtual void render() = 0;
 };

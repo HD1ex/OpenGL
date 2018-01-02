@@ -1,11 +1,20 @@
 #pragma once
-#include <glad\glad.h>
+#include <glad/glad.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <fstream>
 #include <vector>
 #include <memory>
+#include <glm/common.hpp>
+#include <glm/vec3.hpp>
+#include <glm/matrix.hpp>
+#include <glm/gtx/matrix_operation.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+using namespace glm;
 
 using namespace std;
 
@@ -31,3 +40,6 @@ inline bool fileExists(const std::string& name)
 	struct stat buffer;
 	return (stat(name.c_str(), &buffer) == 0);
 }
+
+
+#include "Tools.h"

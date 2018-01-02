@@ -10,6 +10,8 @@ App::App()
 		error("Failed to initialize GLAD");
 	}
 
+	Renderer::s_pWindow = &m_window;
+
 	m_window.setGLViewport();
 
 	m_pScene = make_unique<MainScene>();
@@ -20,7 +22,7 @@ int App::run()
 	//Main loop
 	while (m_window.isOpen())
 	{
-		m_pScene->clear();
+		m_pScene->prepare();
 		m_pScene->update();
 		m_pScene->render();
 
