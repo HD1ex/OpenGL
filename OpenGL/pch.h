@@ -18,7 +18,7 @@ using namespace glm;
 
 using namespace std;
 
-inline void error(const char* what, const int line, const char* file)
+inline void error(const char* what, const int line, const wchar_t* file)
 {
 	if (what[0])
 	{
@@ -33,7 +33,22 @@ inline void error(const char* what, const int line, const char* file)
 	throw;
 }
 
-#define error(text) error(text, __LINE__, __FILE__)
+inline void error(const wchar_t* what, const int line, const wchar_t* file)
+{
+	if (what[0])
+	{
+		wcerr << what << endl;
+		wcerr << "This Error occured at line " << line << " in file " << file << endl;
+	}
+	else
+	{
+		wcerr << "An Error occured at line " << line << " in file " << file << endl;
+	}
+
+	throw;
+}
+
+#define error(text) error(text, __LINE__, __FILEW__)
 
 inline bool fileExists(const std::string& name)
 {

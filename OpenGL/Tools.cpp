@@ -15,3 +15,21 @@ mat4 createTransformationMatrix(const vec3 translation, const vec3 rotation, con
 
 	return matrix;
 }
+
+std::vector<std::string> split(const std::string& s, const char delim)
+{
+	std::vector<std::string> elems;
+	split(s, delim, std::back_inserter(elems));
+	return elems;
+}
+
+template<typename Out>
+void split(const std::string &s, const char delim, Out result)
+{
+	std::stringstream ss(s);
+	std::string item;
+	while (std::getline(ss, item, delim))
+	{
+		*(result++) = item;
+	}
+}

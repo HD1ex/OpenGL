@@ -147,6 +147,7 @@
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="ModelTexture.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="RawModel.h" />

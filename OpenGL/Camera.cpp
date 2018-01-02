@@ -14,7 +14,7 @@ Camera::~Camera()
 void Camera::update()
 {
 	//TODO add proper movement
-	auto delta = 0.02f;
+	auto delta = 0.08f;
 	if (GetAsyncKeyState(VK_UP))
 		m_position.z -= delta;
 	if (GetAsyncKeyState(VK_DOWN))

@@ -5,6 +5,7 @@
 #include "Renderer.h"
 #include "ModelTexture.h"
 #include "TexturedModel.h"
+#include "ObjLoader.h"
 
 class MainScene :
 	public IScene
