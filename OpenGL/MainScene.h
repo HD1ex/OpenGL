@@ -26,5 +26,6 @@ private:
 	unique_ptr<TexturedModel> m_pTexturedModel;
 	unique_ptr<Entity> m_pEntity;
 	unique_ptr<Camera> m_pCamera;
+	unique_ptr<Light> m_pLight;
 };
 

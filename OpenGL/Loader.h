@@ -7,7 +7,7 @@ class Loader
 {
 public:
 	~Loader();
-	unique_ptr<RawModel> loadToVao(const vector<float>& positions, const vector<float>& texCoords, const vector<GLuint>& indices);
+	unique_ptr<RawModel> loadToVao(const vector<float>& positions, const vector<float>& texCoords, const vector<float>& normals, const vector<GLuint>& indices);
 	GLuint loadTexture(const string& filename);
 
 	//Wrapper functions

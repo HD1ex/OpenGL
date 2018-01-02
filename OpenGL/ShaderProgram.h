@@ -18,7 +18,7 @@ protected:
 	GLuint getUniformLocation(string uniformName);
 
 	void loadFloat(GLuint location, float value);
-	void loadVector(GLuint location, vec3& value);
+	void loadVector(GLuint location, const vec3& value);
 	void loadBoolean(GLuint location, bool value);
 	void loadMatrix(GLuint location, mat4x4& value);
 

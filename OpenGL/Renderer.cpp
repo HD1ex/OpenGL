@@ -21,9 +21,13 @@ void Renderer::render(const Entity * pEntity, StaticShader* pShader)
 {
 	const auto pTexturedModel = pEntity->getModel();
 	const auto pRawModel = pTexturedModel->getRawModel();
+	ModelTexture* pTexture = pTexturedModel->getTexture();
+
 	glBindVertexArray(pRawModel->getVao());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	pShader->loadShineVariables(pTexture->getShineDamper(), pTexture->getReflectivity());
 	auto trans = createTransformationMatrix(pEntity->getPosition(), pEntity->getRotation(), pEntity->getScale());
 	pShader->loadTransformation(trans);
 	glActiveTexture(GL_TEXTURE0);
@@ -31,6 +35,7 @@ void Renderer::render(const Entity * pEntity, StaticShader* pShader)
 	glDrawElements(GL_TRIANGLES, pRawModel->getVertexCount(), GL_UNSIGNED_INT, nullptr);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 	glBindVertexArray(0);
 }
 

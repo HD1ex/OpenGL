@@ -7,9 +7,14 @@ public:
 	ModelTexture(const GLuint & texture);
 	~ModelTexture();
 
+	GLuint getTexture() const;
+	float getShineDamper() const;
+	void setShineDamper(const float shineDamper);
+	float getReflectivity() const;
+	void setReflectivity(const float reflectivity);
 private:
 	GLuint m_texture;
-public:
-	GLuint getTexture() const;
+	float m_shineDamper;
+	float m_reflectivity;
 };
 

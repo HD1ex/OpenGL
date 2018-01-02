@@ -49,14 +49,14 @@ GLuint ShaderProgram::getUniformLocation(string uniformName)
 	return glGetUniformLocation(m_programID, uniformName.c_str());
 }
 
-void ShaderProgram::loadFloat(const GLuint location, float value)
+void ShaderProgram::loadFloat(const GLuint location, const float value)
 {
 	glUniform1f(location, value);
 }
 
-void ShaderProgram::loadVector(const GLuint location, vec3 & value)
+void ShaderProgram::loadVector(const GLuint location,const vec3 & value)
 {
-	glUniform1fv(location, value.length(), reinterpret_cast<float*>(&value));
+	glUniform3f(location, value.x, value.y, value.z);
 }
 
 void ShaderProgram::loadBoolean(const GLuint location, bool value)

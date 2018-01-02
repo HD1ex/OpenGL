@@ -30,10 +30,23 @@ void StaticShader::loadView(Camera* pCamera)
 	loadMatrix(m_locationViewMatrix, mat);
 }
 
+void StaticShader::loadLight(Light* pLight)
+{
+	loadVector(m_locationLightPosition, pLight->getPosition());
+	loadVector(m_locationLightColor, pLight->getColor());
+}
+
+void StaticShader::loadShineVariables(float damper, float reflectivity)
+{
+	loadFloat(m_locationShineDamper, damper);
+	loadFloat(m_locationReflectivity, reflectivity);
+}
+
 void StaticShader::bindAttributes()
 {
 	bindAttribute(0, "position");
 	bindAttribute(1, "textureCoordinates");
+	bindAttribute(2, "normal");
 }
 
 void StaticShader::getAllUniformLocations()
@@ -41,5 +54,8 @@ void StaticShader::getAllUniformLocations()
 	m_locationTransformationMatrix = getUniformLocation("transformationMatrix");
 	m_locationProjectionMatrix = getUniformLocation("projectionMatrix");
 	m_locationViewMatrix = getUniformLocation("viewMatrix");
-
+	m_locationLightPosition = getUniformLocation("lightPosition");
+	m_locationLightColor = getUniformLocation("lightColor");
+	m_locationShineDamper = getUniformLocation("shineDamper");
+	m_locationReflectivity = getUniformLocation("reflectivity");
 }

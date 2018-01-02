@@ -9,12 +9,13 @@ Loader::~Loader()
 	glDeleteTextures(m_textures.size(), m_textures.data());
 }
 
-unique_ptr<RawModel> Loader::loadToVao(const vector<float>& positions, const vector<float>& texCoords, const vector<GLuint>& indices)
+unique_ptr<RawModel> Loader::loadToVao(const vector<float>& positions, const vector<float>& texCoords,const vector<float>& normals, const vector<GLuint>& indices)
 {
 	const int vao = createVao();
 	bindIndicesBuffer(indices);
 	storeDataInAttributeList(0, 3, positions);
 	storeDataInAttributeList(1, 2, texCoords);
+	storeDataInAttributeList(2, 3, normals);
 	unbindVao();
 
 	return make_unique<RawModel>(vao, indices.size());
