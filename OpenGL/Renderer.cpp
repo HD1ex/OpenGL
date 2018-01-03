@@ -6,6 +6,8 @@ Window* Renderer::s_pWindow = nullptr;
 
 Renderer::Renderer(StaticShader* pShader)
 {
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 	setProjectionMatrix(70, s_pWindow->getAspectRatio(), 0.1f, 1000.f);
 	pShader->start();
 	pShader->loadProjection(m_projection);

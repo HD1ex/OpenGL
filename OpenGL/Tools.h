@@ -8,3 +8,5 @@ template<typename Out>
 void split(const std::string &s, const char delim, Out result);
 
 std::vector<std::string> split(const std::string& s, const char delim);
+
+long getFileSize(const std::string& filename);

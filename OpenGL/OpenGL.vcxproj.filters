@@ -69,10 +69,10 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ObjLoader.cpp">
+    <ClCompile Include="Light.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Light.cpp">
+    <ClCompile Include="ModelLoader.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -125,10 +125,10 @@
     <ClInclude Include="Camera.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ObjLoader.h">
+    <ClInclude Include="Light.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="ModelLoader.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

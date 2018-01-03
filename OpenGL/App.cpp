@@ -1,6 +1,5 @@
 #include "App.h"
-
-
+#include <chrono>
 
 App::App()
 	:m_window(1280, 720)
@@ -14,7 +13,13 @@ App::App()
 
 	m_window.setGLViewport();
 
+	const auto t1 = std::chrono::high_resolution_clock::now();
+
 	m_pScene = make_unique<MainScene>();
+
+	const auto t2 = std::chrono::high_resolution_clock::now();
+
+	cout << "Loading time: " << chrono::duration_cast<chrono::duration<double>>(t2 - t1).count() << " seconds" << endl;
 }
 
 int App::run()

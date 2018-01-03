@@ -10,7 +10,7 @@ MainScene::MainScene()
 	m_pLight = make_unique<Light>(vec3(10, 10, 10), vec3(1, 1, 1));
 
 
-	m_pModel = ObjLoader::loadObjModel(L"dragon.obj", m_pLoader.get());
+	m_pModel = ModelLoader::loadCompiledModel(L"dragon.model", m_pLoader.get());
 
 	m_pTexture = make_shared<ModelTexture>(m_pLoader->loadTexture("white.png"));
 	m_pTexturedModel = make_unique<TexturedModel>(m_pModel.get(), m_pTexture.get());
