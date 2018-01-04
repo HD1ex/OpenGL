@@ -6,7 +6,7 @@ class Entity
 {
 public:
 
-	Entity(TexturedModel* pModel, const vec3& position, const vec3& rotation, const vec3& scale);
+	Entity(TexturedModel* pModel, const vec3& position = vec3(0.f), const vec3& rotation = vec3(0.f), const vec3& scale = vec3(1.f));
 
 	Entity();
 	~Entity();

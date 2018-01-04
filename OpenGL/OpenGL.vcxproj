@@ -147,10 +147,11 @@
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="lodepng.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="MasterRenderer.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
-    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="EntityRenderer.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <Text Include="simpleVertexShader.glsl">
       <FileType>Document</FileType>
@@ -168,12 +169,13 @@
     <ClInclude Include="Loader.h" />
     <ClInclude Include="lodepng.h" />
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="MasterRenderer.h" />
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="IScene.h" />
     <ClInclude Include="RawModel.h" />
-    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="EntityRenderer.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="TexturedModel.h" />

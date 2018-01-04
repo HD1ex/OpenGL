@@ -2,10 +2,10 @@
 #include "IScene.h"
 #include "StaticShader.h"
 #include "Loader.h"
-#include "Renderer.h"
 #include "ModelTexture.h"
 #include "TexturedModel.h"
 #include "ModelLoader.h"
+#include "MasterRenderer.h"
 
 class MainScene :
 	public IScene
@@ -18,13 +18,12 @@ public:
 
 	//Members
 private:
-	unique_ptr<StaticShader> m_pShader;
 	unique_ptr<Loader> m_pLoader;
-	unique_ptr<Renderer> m_pRenderer;
+	unique_ptr<MasterRenderer> m_pRenderer;
 	shared_ptr<RawModel> m_pModel;
 	shared_ptr<ModelTexture> m_pTexture;
 	unique_ptr<TexturedModel> m_pTexturedModel;
-	unique_ptr<Entity> m_pEntity;
+	vector<unique_ptr<Entity>> m_vecpEntities;
 	unique_ptr<Camera> m_pCamera;
 	unique_ptr<Light> m_pLight;
 };

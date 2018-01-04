@@ -34,9 +34,18 @@ void split(const std::string &s, const char delim, Out result)
 	}
 }
 
+
+
 long getFileSize(const std::string& filename)
 {
 	struct stat stat_buf;
 	const auto rc = stat(filename.c_str(), &stat_buf);
 	return rc == 0 ? stat_buf.st_size : -1;
+}
+
+float randomFloat()
+{
+	const float max = INT_MAX;
+
+	return rand() / max;
 }

@@ -48,9 +48,6 @@
     <ClCompile Include="RawModel.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="lodepng.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -73,6 +70,12 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="ModelLoader.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterRenderer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityRenderer.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +107,6 @@
     <ClInclude Include="RawModel.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="lodepng.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -129,6 +129,12 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="ModelLoader.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterRenderer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityRenderer.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
