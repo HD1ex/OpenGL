@@ -14,15 +14,22 @@ public:
 	void swapBuffers();
 	void processEvents();
 	float getAspectRatio();
+	bool isKeyPressed(int glfwKey) const;
+
+	double getTime() const;
+	double getDeltaTime() const;
 
 	//Wrapper functions
 private:
 	void onResize(int width, int height);
+
 
 	//Members
 private:
 	GLFWwindow * m_pGLFWWindow;
 	int m_width;
 	int m_height;
+	double m_timeLastFrame;
+
 };
 

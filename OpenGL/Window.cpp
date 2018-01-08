@@ -55,6 +55,8 @@ void Window::swapBuffers()
 void Window::processEvents()
 {
 	glfwPollEvents();
+
+	m_timeLastFrame = getTime();
 }
 
 float Window::getAspectRatio()
@@ -67,4 +69,20 @@ void Window::onResize(int width, int height)
 	m_width = width;
 	m_height = height;
 	setGLViewport();
+}
+
+bool Window::isKeyPressed(const int glfwKey) const
+{
+	const auto state = glfwGetKey(m_pGLFWWindow, glfwKey);
+	return state == GLFW_PRESS;
+}
+
+double Window::getTime() const
+{
+	return glfwGetTime();
+}
+
+double Window::getDeltaTime() const
+{
+	return getTime() - m_timeLastFrame;
 }

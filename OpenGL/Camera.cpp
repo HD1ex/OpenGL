@@ -1,5 +1,5 @@
 #include "Camera.h"
-
+#include "Window.h"
 
 
 Camera::Camera()
@@ -11,18 +11,23 @@ Camera::~Camera()
 {
 }
 
-void Camera::update()
+void Camera::update(Window* pWindow)
 {
-	//TODO add proper movement
-	auto delta = 0.08f;
-	if (GetAsyncKeyState(VK_UP))
-		m_position.z -= delta;
-	if (GetAsyncKeyState(VK_DOWN))
-		m_position.z += delta;
-	if (GetAsyncKeyState(VK_LEFT))
-		m_position.x -= delta;
-	if (GetAsyncKeyState(VK_RIGHT))
-		m_position.x += delta;
+	const auto dt = pWindow->getDeltaTime();
+
+	const auto delta = 5.f; // In GL-Time
+	if (pWindow->isKeyPressed(GLFW_KEY_W))
+		m_position.z -= delta * dt;
+	if (pWindow->isKeyPressed(GLFW_KEY_S))
+		m_position.z += delta * dt;
+	if (pWindow->isKeyPressed(GLFW_KEY_A))
+		m_position.x -= delta * dt;
+	if (pWindow->isKeyPressed(GLFW_KEY_D))
+		m_position.x += delta * dt;
+	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_SHIFT))
+		m_position.y += delta * dt;
+	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
+		m_position.y -= delta * dt;
 }
 
 vec3 Camera::getPosition() const

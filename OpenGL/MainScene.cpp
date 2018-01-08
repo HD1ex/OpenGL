@@ -32,11 +32,15 @@ MainScene::~MainScene()
 {
 }
 
+void MainScene::processInput(Window* pWindow)
+{
+	m_pCamera->update(pWindow);
+}
+
 void MainScene::update()
 {
-	m_pCamera->update();
-	for (auto& pEntity : m_vecpEntities)
-		pEntity->rotate(vec3(0, 0.01f, 0));
+	/*for (auto& pEntity : m_vecpEntities)
+		pEntity->rotate(vec3(0, 0.01f, 0));*/
 }
 
 void MainScene::render()

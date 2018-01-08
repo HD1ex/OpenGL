@@ -14,7 +14,7 @@ App::App()
 
 	m_window.setGLViewport();
 
-	const auto t1 = std::chrono::high_resolution_clock::now();
+	const auto t1 = std::chrono::high_resolution_clock::now(); // window.getTime() ??
 
 	m_pScene = make_unique<MainScene>();
 
@@ -31,6 +31,7 @@ int App::run()
 	//Main loop
 	while (m_window.isOpen())
 	{
+		m_pScene->processInput(&m_window);
 		m_pScene->update();
 		m_pScene->render();
 

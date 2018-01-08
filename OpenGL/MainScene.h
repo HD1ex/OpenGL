@@ -14,6 +14,8 @@ class MainScene :
 public:
 	MainScene();
 	~MainScene();
+
+	void processInput(Window* window) override;
 	void update()override;
 	void render()override;
 

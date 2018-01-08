@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Window.h"
 
 class Camera
 {
@@ -7,7 +8,7 @@ public:
 	Camera();
 	~Camera();
 
-	void update();
+	void update(Window* pWindow);
 
 	vec3 getPosition() const;
 	void setPosition(vec3 position);
