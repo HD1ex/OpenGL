@@ -11,11 +11,14 @@ MainScene::MainScene()
 	m_pTexture = make_shared<ModelTexture>(m_pLoader->loadTexture("white.png"));
 	m_pTexturedModel = make_unique<TexturedModel>(m_pModel.get(), m_pTexture.get());
 
-	for (float x = 0; x < 100; x += 10)
-		for (float z = 0; z < 100; z += 10)
+	/*for (float x = 0; x < 100; x += 10.f)
+		for (float z = 0; z < 100; z += 10.f)
 		{
 			m_vecpEntities.push_back(make_unique<Entity>(m_pTexturedModel.get(), vec3(x, 0, z)));
-		}
+		}*/
+
+	m_vecpEntities.push_back(make_unique<Entity>(m_pTexturedModel.get(), vec3(0, 0, 0)));
+
 
 	m_pCamera = make_unique<Camera>();
 	m_pCamera->setPosition(vec3(0, 7, 15));

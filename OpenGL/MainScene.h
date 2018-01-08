@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "IScene.h"
 #include "StaticShader.h"
 #include "Loader.h"

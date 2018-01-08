@@ -2,7 +2,8 @@
 #include <chrono>
 
 App::App()
-	:m_window(1280, 720)
+	//:m_window(1280, 720)
+	:m_window(1920, 1080)
 {
 	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 	{
@@ -24,6 +25,9 @@ App::App()
 
 int App::run()
 {
+	auto last = std::chrono::high_resolution_clock::now();
+	const auto DT = 1 / 60.0;
+
 	//Main loop
 	while (m_window.isOpen())
 	{
@@ -32,6 +36,11 @@ int App::run()
 
 		m_window.swapBuffers();
 		m_window.processEvents();
+
+		//Easy const delta time
+		while (chrono::duration_cast<chrono::duration<double>>(std::chrono::high_resolution_clock::now() - last).count() < DT);
+		
+		last = std::chrono::high_resolution_clock::now();
 	}
 
 	return 0;
