@@ -15,19 +15,29 @@ void Camera::update(Window* pWindow)
 {
 	const auto dt = pWindow->getDeltaTime();
 
-	const auto delta = 5.f; // In GL-Time
+	vec4 dir;
+
+	const auto delta = 5.f; // In GL-Units/sec
 	if (pWindow->isKeyPressed(GLFW_KEY_W))
-		m_position.z -= delta * dt;
+		dir.z -= delta * dt;
 	if (pWindow->isKeyPressed(GLFW_KEY_S))
-		m_position.z += delta * dt;
+		dir.z += delta * dt;
 	if (pWindow->isKeyPressed(GLFW_KEY_A))
-		m_position.x -= delta * dt;
+		dir.x -= delta * dt;
 	if (pWindow->isKeyPressed(GLFW_KEY_D))
-		m_position.x += delta * dt;
+		dir.x += delta * dt;
 	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_SHIFT))
-		m_position.y += delta * dt;
+		dir.y += delta * dt;
 	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
-		m_position.y -= delta * dt;
+		dir.y -= delta * dt;
+
+	const auto mat = createTransformationMatrix(vec3(), m_rotation, vec3(1));
+
+	dir = mat * dir;
+
+	m_position.x += dir.x;
+	m_position.y += dir.y;
+	m_position.z += dir.z;
 }
 
 vec3 Camera::getPosition() const

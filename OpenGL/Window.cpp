@@ -1,7 +1,7 @@
 #include "Window.h"
 
-Window::Window(int width, int height)
-	: m_width(width), m_height(height)
+Window::Window(const int width, const int height)
+	: m_width(width), m_height(height), m_timeLastFrame(0.0)
 {
 	//Setup GLFW
 	glfwInit();
@@ -24,7 +24,6 @@ Window::Window(int width, int height)
 		static_cast<Window*>(glfwGetWindowUserPointer(pW))->onResize(width, height);
 	});
 }
-
 
 Window::~Window()
 {

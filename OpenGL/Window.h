@@ -7,6 +7,7 @@ class Window
 	//Public functions
 public:
 	Window(int width, int height);
+	Window(float factor);
 	~Window();
 	GLFWwindow * getGLFWWindow();
 	void setGLViewport();
@@ -22,7 +23,6 @@ public:
 	//Wrapper functions
 private:
 	void onResize(int width, int height);
-
 
 	//Members
 private:
