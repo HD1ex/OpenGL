@@ -39,8 +39,8 @@ void MainScene::processInput(Window* pWindow)
 
 void MainScene::update()
 {
-	/*for (auto& pEntity : m_vecpEntities)
-		pEntity->rotate(vec3(0, 0.01f, 0));*/
+	for (auto& pEntity : m_vecpEntities)
+		pEntity->rotate(vec3(0, 0.01f, 0));
 }
 
 void MainScene::render()

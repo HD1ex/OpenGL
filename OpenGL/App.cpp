@@ -10,7 +10,7 @@ App::App()
 		error("Failed to initialize GLAD");
 	}
 
-	MasterRenderer::s_pWindow = &m_window;
+	MasterRenderer::setGlobalWindow(&m_window);
 
 	m_window.setGLViewport();
 
@@ -26,17 +26,19 @@ App::App()
 int App::run()
 {
 	auto last = std::chrono::high_resolution_clock::now();
-	const auto DT = 1 / 60.0;
+	static const auto DT = 1 / 60.0;
 
 	//Main loop
 	while (m_window.isOpen())
 	{
+
 		m_pScene->processInput(&m_window);
 		m_pScene->update();
 		m_pScene->render();
 
 		m_window.swapBuffers();
 		m_window.processEvents();
+		m_window.closeOnEscape();
 
 		//Easy const delta time
 		while (chrono::duration_cast<chrono::duration<double>>(std::chrono::high_resolution_clock::now() - last).count() < DT);
@@ -47,10 +49,8 @@ int App::run()
 	return 0;
 }
 
+App::~App() = default;
 
-App::~App()
-{
-}
 
 int main()
 {

@@ -34,3 +34,5 @@ std::vector<TV> extract_values(std::map<TK, TV> const& inputMap)
 	}
 	return retval;
 }
+
+void constrain(float& value, const float min, const float max);

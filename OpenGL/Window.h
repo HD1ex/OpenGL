@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include "GLFW\glfw3.h"
+#include "GLFW/glfw3.h"
 
 class Window
 {
@@ -9,16 +9,19 @@ public:
 	Window(int width, int height);
 	Window(float factor);
 	~Window();
-	GLFWwindow * getGLFWWindow();
-	void setGLViewport();
-	bool isOpen();
-	void swapBuffers();
+	GLFWwindow * getGLFWWindow() const;
+	void setGLViewport() const;
+	bool isOpen() const;
+	void swapBuffers() const;
 	void processEvents();
-	float getAspectRatio();
+	float getAspectRatio() const;
 	bool isKeyPressed(int glfwKey) const;
+	vec2 getCursorPosition() const;
 
 	double getTime() const;
 	double getDeltaTime() const;
+	void closeOnEscape() const;
+	bool isMouseButtonPressed(int button);
 
 	//Wrapper functions
 private:

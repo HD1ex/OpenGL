@@ -3,41 +3,84 @@
 
 
 Camera::Camera()
+	:m_up(0, 1, 0)
+	, m_movementSpeed(1.f) // In GL-Units/sec
 {
+
 }
 
 
-Camera::~Camera()
-{
-}
+Camera::~Camera() = default;
 
 void Camera::update(Window* pWindow)
 {
 	const auto dt = pWindow->getDeltaTime();
 
-	vec4 dir;
-
-	const auto delta = 5.f; // In GL-Units/sec
+	//Keyboard
+	vec3 movementVector;
 	if (pWindow->isKeyPressed(GLFW_KEY_W))
-		dir.z -= delta * dt;
+		movementVector.z--;
 	if (pWindow->isKeyPressed(GLFW_KEY_S))
-		dir.z += delta * dt;
+		movementVector.z++;
 	if (pWindow->isKeyPressed(GLFW_KEY_A))
-		dir.x -= delta * dt;
+		movementVector.x--;
 	if (pWindow->isKeyPressed(GLFW_KEY_D))
-		dir.x += delta * dt;
+		movementVector.x++;
 	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_SHIFT))
-		dir.y += delta * dt;
+		movementVector.y++;
 	if (pWindow->isKeyPressed(GLFW_KEY_LEFT_CONTROL))
-		dir.y -= delta * dt;
+		movementVector.y--;
 
-	const auto mat = createTransformationMatrix(vec3(), m_rotation, vec3(1));
+	//Mouse
+	const auto cur = pWindow->getCursorPosition();
+	if (pWindow->isMouseButtonPressed(GLFW_MOUSE_BUTTON_LEFT))
+	{
+		auto diff = cur - m_lastCursor;
 
-	dir = mat * dir;
+		diff.x *= 0.005f;
+		diff.y *= 0.005f;
 
-	m_position.x += dir.x;
-	m_position.y += dir.y;
-	m_position.z += dir.z;
+		m_rotation.x -= diff.x;
+		m_rotation.y += diff.y;
+
+		static const double LIMIT = pi<float>() * 0.95f * 0.5f;
+		constrain(m_rotation.y, -LIMIT, LIMIT);
+	}
+	m_lastCursor = cur;
+
+	//Calc rotation
+	const auto h = half_pi<float>() - m_rotation.x;
+	const auto v = half_pi<float>() - m_rotation.y;
+	const auto radius = 1.0f;
+	vec3 direction;
+
+	direction.x = radius * sin(v) * cos(h);
+	direction.y = radius * cos(v);
+	direction.z = radius * sin(v) * sin(h);
+
+	const auto forward = vec3(direction.x, 0, direction.z);
+	const auto leftRight = cross(m_up, direction);
+
+	normalize(forward);
+	normalize(leftRight);
+
+	if (movementVector.z > 0)
+		m_position += forward * m_movementSpeed;
+	else if (movementVector.z < 0)
+		m_position -= forward * m_movementSpeed;
+
+	if (movementVector.x > 0)
+		m_position += leftRight * m_movementSpeed;
+	else if (movementVector.x < 0)
+		m_position -= leftRight * m_movementSpeed;
+
+	if (movementVector.y > 0)
+		m_position += m_up * m_movementSpeed;
+	else if (movementVector.y < 0)
+		m_position -= m_up * m_movementSpeed;
+
+	//Apply
+	m_lookAt = m_position + direction;
 }
 
 vec3 Camera::getPosition() const
@@ -45,29 +88,22 @@ vec3 Camera::getPosition() const
 	return m_position;
 }
 
-void Camera::setPosition(vec3 position)
+void Camera::setPosition(const vec3 position)
 {
-	m_position = std::move(position);
+	m_position = position;
 }
 
-vec3 Camera::getRotation() const
+vec2 Camera::getRotation() const
 {
 	return m_rotation;
 }
 
-void Camera::setRotation(vec3 rotation)
+void Camera::setRotation(const vec2 rotation)
 {
-	m_rotation = std::move(rotation);
+	m_rotation = rotation;
 }
 
-mat4 Camera::createViewMatrix()
+mat4 Camera::createViewMatrix() const
 {
-	mat4 matrix;
-	matrix *= glm::rotate(m_rotation.x, vec3(1, 0, 0));
-	matrix *= glm::rotate(m_rotation.y, vec3(0, 1, 0));
-	matrix *= glm::rotate(m_rotation.z, vec3(0, 0, 1));
-
-	matrix *= translate(-m_position);
-
-	return matrix;
+	return glm::lookAtLH(m_position, m_lookAt, m_up);
 }

@@ -46,6 +46,11 @@ void MasterRenderer::processEntity(Entity* pEntity)
 	batch.push_back(pEntity);*/
 }
 
+void MasterRenderer::setGlobalWindow(Window* pWindow)
+{
+	s_pWindow = pWindow;
+}
+
 void MasterRenderer::prepare()
 {
 	glEnable(GL_DEPTH_TEST);

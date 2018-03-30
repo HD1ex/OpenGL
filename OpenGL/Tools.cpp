@@ -49,3 +49,15 @@ float randomFloat()
 
 	return rand() / max;
 }
+
+void constrain(float& value, const float min, const float max)
+{
+	if (value > max)
+	{
+		value = max;
+	}
+	else if (value < min)
+	{
+		value = min;
+	}
+}
